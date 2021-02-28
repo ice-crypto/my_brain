@@ -52,4 +52,4 @@ production:
   <<: *default
   database: my_brain_production
   username: my_brain
-  password: <%= ENV['MY_BRAIN_DATABASE_PASSWORD'] %>
+  password: s*(T4u7n90Z%

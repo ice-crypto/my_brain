@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+periods = [1,3,7,15,90,240,549,1460]
+periods.each do |period|
+  Period.new(period: period).save
+end
+
+formats = [0,1,2,3]
+formats.each do |format|
+  Format.new(problem_type:format).save
+end

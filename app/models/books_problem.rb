@@ -1,0 +1,2 @@
+class BooksProblem < ApplicationRecord
+end
