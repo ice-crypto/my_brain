@@ -29,7 +29,7 @@ set :keep_releases, 5
 
 # rubyのバージョン
 # rbenvで設定したサーバー側のrubyのバージョン
-set :rbenv_ruby, '2.6.5'
+set :rbenv_ruby, '2.6.6'
 
 set :rbenv_path, '/home/deployer/.rbenv'
 set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
