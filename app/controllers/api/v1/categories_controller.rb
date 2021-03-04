@@ -10,9 +10,8 @@ module Api
       end
 
       def create
-        category = Category.new(category_params)
-
-        if category.save
+        binding.pry
+        unless Category.json_to_relation(params[:category][:data])
           render json: category, status: :created and return
         else
           render json: category.errors, status: :unprocessable_entity

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_28_040610) do
+ActiveRecord::Schema.define(version: 2021_03_02_180451) do
 
   create_table "authors", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
@@ -45,9 +45,22 @@ ActiveRecord::Schema.define(version: 2021_02_28_040610) do
   end
 
   create_table "categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name"
+    t.string "title"
+    t.string "key"
+    t.boolean "root", default: false
+    t.integer "group"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "category_relationships", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "category_id"
+    t.bigint "child_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id", "child_id"], name: "index_category_relationships_on_category_id_and_child_id", unique: true
+    t.index ["category_id"], name: "index_category_relationships_on_category_id"
+    t.index ["child_id"], name: "index_category_relationships_on_child_id"
   end
 
   create_table "formats", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -74,6 +87,8 @@ ActiveRecord::Schema.define(version: 2021_02_28_040610) do
     t.index ["period_id"], name: "index_problems_on_period_id"
   end
 
+  add_foreign_key "category_relationships", "categories"
+  add_foreign_key "category_relationships", "categories", column: "child_id"
   add_foreign_key "problems", "formats"
   add_foreign_key "problems", "periods"
 end

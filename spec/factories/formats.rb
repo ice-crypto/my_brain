@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :format do
-    type { 1 }
+    problem_type { 1 }
   end
 end
