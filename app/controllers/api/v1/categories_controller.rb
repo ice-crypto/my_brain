@@ -10,11 +10,10 @@ module Api
       end
 
       def create
-        binding.pry
-        unless Category.json_to_relation(params[:category][:data])
-          render json: category, status: :created and return
+        if Category.json_to_relation(params[:category][:data].as_json)[0].kind_of?(Integer)
+          render status: :created and return
         else
-          render json: category.errors, status: :unprocessable_entity
+          render status: :unprocessable_entity
         end
       end
 

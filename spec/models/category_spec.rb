@@ -10,9 +10,31 @@ RSpec.describe Category, type: :model do
   end
   describe "json_to_relation" do
     before(:each) do
-      @data = '[{"title"=>"root", "key"=>"0-0", "children"=>[{"title"=>"p-node1", "key"=>"0-0-0", "children"=>[{"title"=>"p-node3", "key"=>"0-0-0-1"}, {"title"=>"p-node2", "key"=>"0-0-0-0"}]}]}]'
-      p "before_category_lastid"
-      p Category.maximum(:id)
+      @data = [
+        {
+          "title"=>"root",
+          "key"=>"0-0",
+          "children"=>
+          [
+            {
+              "title"=>"p-node1",
+              "key"=>"0-0-0",
+              "children"=>
+              [
+                {
+                  "title"=>"p-node3",
+                  "key"=>"0-0-0-1"
+                },
+                {
+                  "title"=>"p-node2",
+                  "key"=>"0-0-0-0"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+
     end
     it "json形式のobjをcategoryオブジェクトへ変換" do
       before_category_lastid = Category.maximum(:id).nil? ? 0 : Category.maximum(:id)

@@ -15,19 +15,16 @@ class Category < ApplicationRecord
   #function
   def self.json_to_relation(json_data,root_id=-1)
     return false if json_data.blank?
-    json_data = JSON.parse(json_data.gsub(/=>/,':'),symbolize_names: true)
-    p json_data
     nodes = []
     json_data.each do |node|
-      p node
-      record = {title:node[:title],key:node[:key]}
-      if node[:key] == '0-0'
+      record = {title:node["title"],key:node["key"]}
+      if node["key"] == '0-0'
         record[:root] = true
         record[:group] = -1
         category = Category.new(record)
         raise Exception.new("root node save error") unless category.save
-        if node.has_key?(:children)
-          children = json_to_relation(node[:children].to_json,root_id)
+        if node.has_key?("children")
+          children = json_to_relation(node["children"],root_id)
           record[:group] = root_id
           category = Category.new(record)
           raise Exception.new("children save error") unless category.save
@@ -35,8 +32,8 @@ class Category < ApplicationRecord
             category.category_relationships.find_or_create_by(child_id: node_id)
           end
         end
-      elsif node.has_key?(:children)
-        children = json_to_relation(node[:children].to_json,root_id)
+      elsif node.has_key?("children")
+        children = json_to_relation(node["children"],root_id)
         record[:group] = root_id
         category = Category.new(record)
         raise Exception.new("children save error") unless category.save
