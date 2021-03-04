@@ -48,7 +48,6 @@ ActiveRecord::Schema.define(version: 2021_03_02_180451) do
     t.string "title"
     t.string "key"
     t.boolean "root", default: false
-    t.integer "group"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

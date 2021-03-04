@@ -4,7 +4,6 @@ class CreateCategories < ActiveRecord::Migration[6.1]
       t.string :title
       t.string :key
       t.boolean :root, default: false
-      t.integer :group
 
       t.timestamps
     end
