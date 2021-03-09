@@ -5,8 +5,16 @@ module Api
     class CategoriesController < ApplicationController
       before_action :set_category, only: [:show, :update, :destroy]
       def index
-        categories = Category.all
-        render json: categories, status: :created and return
+        root_categories = Category.where(root:true).select(:id,:title)
+        render json: root_categories, status: :created and return
+      end
+
+      def show
+        if Category.find_by(id: params[:id]).nil?
+          render status: :unprocessable_entity and return
+        else
+          render json: Category.relation_to_json(params[:id]), status: :ok and return
+        end
       end
 
       def create
@@ -28,7 +36,7 @@ module Api
       private
 
       def set_category
-        problem = Problem.find(params[:id])
+        category = Category.find(params[:id])
       end
 
       def category_params

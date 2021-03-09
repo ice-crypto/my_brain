@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2021_03_02_180451) do
   end
 
   create_table "books", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "title"
     t.integer "price"
     t.json "categories"
     t.date "published_at"
@@ -76,11 +77,12 @@ ActiveRecord::Schema.define(version: 2021_03_02_180451) do
 
   create_table "problems", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.text "body"
-    t.json "categories"
     t.date "question_at"
+    t.json "categories"
+    t.json "answers"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "period_id"
+    t.bigint "period_id", default: 1
     t.bigint "format_id"
     t.index ["format_id"], name: "index_problems_on_format_id"
     t.index ["period_id"], name: "index_problems_on_period_id"

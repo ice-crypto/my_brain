@@ -13,8 +13,19 @@ module Api
         questions = Problem.of_questioin_select
         render json: questions, status: :ok and return
       end
+
+      def analyze
+        params[:problem].each do |problem|
+          db_problem = Problem.find(problem["problem_id"])
+          db_problem.calc_question_at(problem["correct"],problem["timesec"].to_i)
+        end
+        render status: :ok and return
+      end
       def create
-        problem = Problem.new(problem_params)
+        tmp_params = problem_params;
+        tmp_params[:question_at] = Date.current + 1.days;
+        tmp_params[:answers] = params[:problem]["answers"].as_json.map{|a|a["answer"]}.compact
+        problem = Problem.new(tmp_params)
 
         if problem.save!
           render json: problem, status: :created and return
@@ -38,7 +49,7 @@ module Api
       end
 
       def problem_params
-        params.require(:problem).permit(:body,:question_at,:period_id,:format_id,{categories:[]})
+        params.require(:problem).permit(:body,:question_at,:period_id,:format_id,{categories:[]},{answers:[]})
       end
     end
   end

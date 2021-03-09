@@ -34,4 +34,23 @@ class Category < ApplicationRecord
     end
     nodes
   end
+
+  def self.relation_to_json(root_id)
+    root_node = Category.find_by(id: root_id)
+    tree_convert_loop(root_node)
+  end
+
+  def self.tree_convert_loop(node,result=[])
+    if node.children.blank?
+      result << {value:node.id,label:node.title}
+      result
+    else
+      tmp_arr = []
+      node.children.each do |node|
+        tmp_arr = tree_convert_loop(node,tmp_arr)
+      end
+      result << {value:node.id,label:node.title,children:tmp_arr}
+    end
+  end
+  private_class_method :tree_convert_loop
 end

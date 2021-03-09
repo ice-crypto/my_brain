@@ -14,3 +14,30 @@ formats = [0,1,2,3]
 formats.each do |format|
   Format.new(problem_type:format).save
 end
+
+data = [
+  {
+    "title"=>"root",
+    "key"=>"0-0",
+    "children"=>
+    [
+      {
+        "title"=>"p-node1",
+        "key"=>"0-0-0",
+        "children"=>
+        [
+          {
+            "title"=>"p-node3",
+            "key"=>"0-0-0-1"
+          },
+          {
+            "title"=>"p-node2",
+            "key"=>"0-0-0-0"
+          }
+        ]
+      }
+    ]
+  }
+]
+
+Category.json_to_relation(data)

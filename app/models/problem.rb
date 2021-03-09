@@ -10,7 +10,7 @@ class Problem < ApplicationRecord
 
   # function
   def self.of_questioin_select
-    Problem.where(question_at:(Date.current.beginning_of_day)..(Date.current.end_of_day))
+    Problem.where(question_at: (Date.current.beginning_of_month)..(Date.current))
   end
 
   def calc_question_at(correct_wrong, answer_speed)
