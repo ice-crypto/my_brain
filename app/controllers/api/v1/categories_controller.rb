@@ -25,6 +25,14 @@ module Api
         end
       end
 
+      def update_recursive
+        if Category.json_to_relation_update(params[:category][:data].as_json)[0].kind_of?(Integer)
+          render status: :created and return
+        else
+          render status: :unprocessable_entity
+        end
+      end
+
       def update
         if category.update(category_params)
           render json: category and return

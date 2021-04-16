@@ -27,6 +27,8 @@ gem 'pry-byebug', group: :development
 gem 'ed25519'
 gem 'bcrypt_pbkdf'
 gem 'rack-cors'
+gem 'redcarpet', '~> 2.3.0'
+gem 'coderay'
 
 
 group :development, :test do

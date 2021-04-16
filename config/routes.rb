@@ -5,10 +5,15 @@ Rails.application.routes.draw do
       resources :problems do
         collection do
           get :questions
+          get :today_questions
           post :analyze
         end
       end
-      resources :categories
+      resources :categories do
+        collection do
+          post :update_recursive
+        end
+      end
       resources :books
       resources :formats
     end

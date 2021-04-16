@@ -13,6 +13,10 @@ class Problem < ApplicationRecord
     Problem.where(question_at: (Date.current.beginning_of_month)..(Date.current))
   end
 
+  def self.of_today_question
+    Problem.all.order(created_at: 'desc')
+  end
+
   def calc_question_at(correct_wrong, answer_speed)
     if answer_speed < 600
       if correct_wrong

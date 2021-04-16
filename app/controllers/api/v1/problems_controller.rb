@@ -14,6 +14,11 @@ module Api
         render json: questions, status: :ok and return
       end
 
+      def today_questions
+        questions = Problem.of_today_question
+        render json: questions, status: :ok and return
+      end
+
       def analyze
         params[:problem].each do |problem|
           db_problem = Problem.find(problem["problem_id"])
