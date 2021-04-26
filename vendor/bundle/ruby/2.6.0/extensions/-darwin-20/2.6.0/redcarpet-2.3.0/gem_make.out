@@ -1,0 +1,24 @@
+current directory: /Users/ishidatomoonari/Documents/private/rails/my_brain/vendor/bundle/ruby/2.6.0/gems/redcarpet-2.3.0/ext/redcarpet
+/Users/ishidatomoonari/.rbenv/versions/2.6.6/bin/ruby -I /Users/ishidatomoonari/.rbenv/versions/2.6.6/lib/ruby/2.6.0 -r ./siteconf20210416-54589-j43c4j.rb extconf.rb
+creating Makefile
+
+current directory: /Users/ishidatomoonari/Documents/private/rails/my_brain/vendor/bundle/ruby/2.6.0/gems/redcarpet-2.3.0/ext/redcarpet
+make "DESTDIR=" clean
+
+current directory: /Users/ishidatomoonari/Documents/private/rails/my_brain/vendor/bundle/ruby/2.6.0/gems/redcarpet-2.3.0/ext/redcarpet
+make "DESTDIR="
+compiling autolink.c
+compiling buffer.c
+compiling houdini_href_e.c
+compiling houdini_html_e.c
+compiling html.c
+compiling html_smartypants.c
+compiling markdown.c
+compiling rc_markdown.c
+compiling rc_render.c
+compiling stack.c
+linking shared-object redcarpet.bundle
+
+current directory: /Users/ishidatomoonari/Documents/private/rails/my_brain/vendor/bundle/ruby/2.6.0/gems/redcarpet-2.3.0/ext/redcarpet
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 redcarpet.bundle ./.gem.20210416-54589-10d71a2
